@@ -1,7 +1,7 @@
 {
   "name": "resources.js",
   "version": "0.1.0",
-  "description": "Clean declarative remote resources manipulation for your client javascript",
+  "description": "Clean declarative remote resource manipulation for your client javascript",
   "main": "resources.js",
   "scripts": {
     "test": "grunt test"

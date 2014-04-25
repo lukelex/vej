@@ -1,20 +1,17 @@
-window.vej.member = function member( path, engine ){
-  var member = {};
+window.vej.member = function member( id, path, engine ){
+  var basePath = path + "/" + id;
 
-  member.detail = window.vej.route({
-    path: path,
-    action: "get"
-  }, engine );
+  var route = window.vej.route( basePath, engine );
 
-  member.delete = window.vej.route({
-    path: path,
-    action: "delete"
-  }, engine );
-
-  member.update = window.vej.route({
-    path: path,
-    action: "patch"
-  }, engine );
-
-  return member;
+  return {
+    detail: function(){
+      return route.act( "get" );
+    },
+    delete: function(){
+      return route.act( "delete" );
+    },
+    update: function(){
+      return route.act( "patch" );
+    }
+  };
 }

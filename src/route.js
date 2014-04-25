@@ -1,7 +1,12 @@
-window.vej.route = function route( spec, engine ){
-  spec.run = function run( params ){
-    return window.vej.request( spec, engine )();
+window.vej.route = function route( path, engine ){
+  function run( spec ){
+    spec.path = path;
+    return window.vej.request( spec, engine );
+  } var route = run;
+
+  route.act = function( method ){
+    return run( { method: method } );
   };
 
-  return spec.run;
+  return route;
 };

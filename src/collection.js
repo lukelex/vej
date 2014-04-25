@@ -1,30 +1,19 @@
 window.vej.collection = function collection( name, engine ){
-  var basePath = asUrl( name );
+  var basePath = "/" + name;
 
   var rsc = function( id ){
-    var memberPath = basePath + asUrl( id );
-    return window.vej.member( memberPath, engine );
+    return window.vej.member( id, basePath, engine );
   };
 
-  rsc.all = window.vej.route({
-    path: basePath,
-    action: "get"
-  }, engine );
+  var route = window.vej.route( basePath, engine );
 
-  rsc.create = window.vej.route({
-    path: basePath,
-    action: "post"
-  }, engine );
+  rsc.all = function all(){
+    return route.act( "get" );
+  };
 
-  rsc.detail = window.vej.route({
-    path: basePath,
-    action: "post",
-    member: true
-  }, engine );
-
-  function asUrl( name ){
-    return "/" + name;
-  }
+  rsc.create = function create(){
+    return route.act( "post" );
+  };
 
   return rsc;
 };
