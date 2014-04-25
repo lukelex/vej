@@ -1,0 +1,38 @@
+{
+  "name": "resources.js",
+  "version": "0.1.0",
+  "description": "Clean declarative remote resources manipulation for your client javascript",
+  "main": "resources.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lukelex/resources.js.git"
+  },
+  "keywords": [
+    "http",
+    "declarative"
+  ],
+  "author": "Lukas Alexandre",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lukelex/resources.js/issues"
+  },
+  "homepage": "https://github.com/lukelex/resources.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.11",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-jasmine": "~0.5.2",
+    "grunt-contrib-concat": "~0.3.0"
+  },
+  "banner": {
+    "divider": "// ==========================================================================\n",
+    "project": "// Project:   Stik DOM - DOM tooling for Stik.js\n",
+    "copyright": "// Copyright: Copyright 2013-2014 Lukas Alexandre\n",
+    "license": "// License:   Licensed under MIT license\n",
+    "licenseLink": "//            See https://github.com/stikjs/stik-dom/blob/master/LICENSE\n"
+  }
+}
