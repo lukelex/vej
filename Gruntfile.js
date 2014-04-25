@@ -1,7 +1,11 @@
 module.exports = function(grunt){
   var srcFiles = [
     'src/setup.js',
-    'src/collection.js'
+    'src/resource.js',
+    'src/collection.js',
+    'src/member.js',
+    'src/route.js',
+    'src/request.js'
   ];
 
   grunt.initConfig({

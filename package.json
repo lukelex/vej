@@ -20,7 +20,9 @@
     "url": "https://github.com/lukelex/resources.js/issues"
   },
   "homepage": "https://github.com/lukelex/resources.js",
-  "dependencies": {},
+  "dependencies": {
+    "http.js": ""
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-cli": "~0.1.11",
