@@ -1,11 +1,12 @@
 window.vej.collection = function collection( name, engine ){
   var rsc = function( id ){
-    return window.vej.member( id, rsc.basePath, engine );
+    rsc.member = window.vej.member( id, rsc.$basePath, engine );
+    return rsc.member;
   };
 
-  rsc.basePath = "/" + name;
+  rsc.$basePath = "/" + name;
 
-  var route = window.vej.route( rsc.basePath, engine );
+  var route = window.vej.route( rsc.$basePath, engine );
 
   rsc.all = function all( data ){
     return route.act( "get", data );

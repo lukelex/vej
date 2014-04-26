@@ -51,8 +51,8 @@ describe("resource", function(){
 
   it("custom collection get route", function(){
     var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
-    var jedis = vej.resource("jedis", httpMock, function(){
-      this.get("search");
+    var jedis = vej.resource("jedis", httpMock, function(rsc){
+      rsc.get("search");
     });
 
     var params = {side: "dark"};
@@ -63,8 +63,8 @@ describe("resource", function(){
 
   it("custom collection post route", function(){
     var httpMock = jasmine.createSpyObj("HttpMock", ["post"]);
-    var jedis = vej.resource("jedis", httpMock, function(){
-      this.post("follow");
+    var jedis = vej.resource("jedis", httpMock, function(rsc){
+      rsc.post("follow");
     });
 
     var params = {jedis: ['anakyn', 'obi-wan']};
