@@ -1,14 +1,14 @@
 {
-  "name": "resources.js",
+  "name": "vej.js",
   "version": "0.1.0",
   "description": "Clean declarative remote resource manipulation for your client javascript",
-  "main": "resources.js",
+  "main": "vej.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:lukelex/resources.js.git"
+    "url": "git@github.com:lukelex/vej.js.git"
   },
   "keywords": [
     "http",
@@ -17,12 +17,9 @@
   "author": "Lukas Alexandre",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lukelex/resources.js/issues"
+    "url": "https://github.com/lukelex/vej.js/issues"
   },
-  "homepage": "https://github.com/lukelex/resources.js",
-  "dependencies": {
-    "http.js": ""
-  },
+  "homepage": "https://github.com/lukelex/vej.js",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-cli": "~0.1.11",
@@ -32,9 +29,9 @@
   },
   "banner": {
     "divider": "// ==========================================================================\n",
-    "project": "// Project:   Stik DOM - DOM tooling for Stik.js\n",
-    "copyright": "// Copyright: Copyright 2013-2014 Lukas Alexandre\n",
+    "project": "// Project:   Vej.js - Declarative http requests\n",
+    "copyright": "// Copyright: Copyright 2014 Lukas Alexandre\n",
     "license": "// License:   Licensed under MIT license\n",
-    "licenseLink": "//            See https://github.com/stikjs/stik-dom/blob/master/LICENSE\n"
+    "licenseLink": "//            See https://github.com/lukelex/vej/blob/master/LICENSE\n"
   }
 }

@@ -11,7 +11,14 @@ module.exports = function(grunt){
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     meta: {
-      banner: '// Version: <%= pkg.version %> | From: <%= grunt.template.today("dd-mm-yyyy") %>\n\n'
+      banner: '<%= pkg.banner.divider %>' +
+              '<%= pkg.banner.project %>' +
+              '<%= pkg.banner.copyright %>' +
+              '<%= pkg.banner.license %>' +
+              '<%= pkg.banner.licenseLink %>' +
+              '<%= pkg.banner.divider %>' +
+              '\n' +
+              '// Version: <%= pkg.version %> | From: <%= grunt.template.today("dd-mm-yyyy") %>\n\n'
     },
     jasmine: {
       src: srcFiles,
@@ -38,7 +45,7 @@ module.exports = function(grunt){
       },
       stik: {
         files: {
-         'resources.min.js': ['resources.js']
+         'vej.min.js': ['vej.js']
         }
       }
     }

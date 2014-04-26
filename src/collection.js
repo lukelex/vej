@@ -8,7 +8,7 @@ window.vej.collection = function collection( name, engine ){
   var route = window.vej.route( basePath, engine );
 
   rsc.all = function all( data ){
-    return route.act( "get", data);
+    return route.act( "get", data );
   };
 
   rsc.create = function create( data ){
