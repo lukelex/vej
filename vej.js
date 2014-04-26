@@ -9,18 +9,40 @@
 
 window.vej = {};
 
-window.vej.resource = function resource( name, engine ){
-  return window.vej.collection( name, engine );
+window.vej.resource = function resource( name, engine, context ){
+  var rsc = window.vej.collection( name, engine );
+
+  if ( !!context ){
+    function collectionAction( method, name ){
+      var newPath = rsc.$basePath + "/" + name;
+      var route = window.vej.route( newPath, engine );
+      rsc[ name ] = function( data ){
+        return route.act( method, data );
+      };
+    }
+
+    context.call({}, {
+      get: function get( name ){
+        collectionAction( "get", name );
+      },
+      post: function post( name ){
+        collectionAction( "post", name );
+      }
+    });
+  }
+
+  return rsc;
 };
 
 window.vej.collection = function collection( name, engine ){
-  var basePath = "/" + name;
-
   var rsc = function( id ){
-    return window.vej.member( id, basePath, engine );
+    rsc.member = window.vej.member( id, rsc.$basePath, engine );
+    return rsc.member;
   };
 
-  var route = window.vej.route( basePath, engine );
+  rsc.$basePath = "/" + name;
+
+  var route = window.vej.route( rsc.$basePath, engine );
 
   rsc.all = function all( data ){
     return route.act( "get", data );
@@ -34,19 +56,19 @@ window.vej.collection = function collection( name, engine ){
 };
 
 window.vej.member = function member( id, path, engine ){
-  var basePath = path + "/" + id;
-
-  var route = window.vej.route( basePath, engine );
+  var basePath = path + "/" + id
 
   return {
+    $basePath: basePath,
+    route: window.vej.route( basePath, engine ),
     detail: function( data ){
-      return route.act( "get", data );
+      return this.route.act( "get", data );
     },
     delete: function( data ){
-      return route.act( "delete", data );
+      return this.route.act( "delete", data );
     },
     update: function( data ){
-      return route.act( "patch", data );
+      return this.route.act( "patch", data );
     }
   };
 }
