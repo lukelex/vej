@@ -7,12 +7,12 @@ window.vej.collection = function collection( name, engine ){
 
   var route = window.vej.route( basePath, engine );
 
-  rsc.all = function all(){
-    return route.act( "get" );
+  rsc.all = function all( data ){
+    return route.act( "get", data);
   };
 
-  rsc.create = function create(){
-    return route.act( "post" );
+  rsc.create = function create( data ){
+    return route.act( "post", data );
   };
 
   return rsc;

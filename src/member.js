@@ -4,14 +4,14 @@ window.vej.member = function member( id, path, engine ){
   var route = window.vej.route( basePath, engine );
 
   return {
-    detail: function(){
-      return route.act( "get" );
+    detail: function( data ){
+      return route.act( "get", data );
     },
-    delete: function(){
-      return route.act( "delete" );
+    delete: function( data ){
+      return route.act( "delete", data );
     },
-    update: function(){
-      return route.act( "patch" );
+    update: function( data ){
+      return route.act( "patch", data );
     }
   };
 }
