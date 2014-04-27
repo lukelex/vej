@@ -5,7 +5,8 @@ module.exports = function(grunt){
     'src/collection.js',
     'src/member.js',
     'src/route.js',
-    'src/request.js'
+    'src/request.js',
+    'src/proxies.js'
   ];
 
   grunt.initConfig({

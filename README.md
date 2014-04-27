@@ -3,7 +3,7 @@
 Vej.js enables you to create a declarative layer on top of your http library of choice.
 
 ```javascript
-var users = vej.resource("users", vej.interfaces.httpjs);
+var users = vej.resource("users", vej.proxies.httpjs);
 
 users.all(); // GET /users
 users.create({name: "Luke Skywalker"}); // POST /users {name: "Luke Skywalker"}

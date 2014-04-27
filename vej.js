@@ -5,7 +5,7 @@
 //            See https://github.com/lukelex/vej/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 0.1.0 | From: 26-04-2014
+// Version: 0.1.0 | From: 27-04-2014
 
 window.vej = {};
 
@@ -88,4 +88,16 @@ window.vej.route = function route( path, engine ){
 
 window.vej.request = function request( spec, data, engine ){
   return engine[ spec.method ]( spec.path, data );
+};
+
+window.vej.proxies = {
+  httpjs: {
+    // https://github.com/nauman1225/http.js
+    get: function(path, data){
+      return new Http.Get(path, true).start();
+    },
+    post: function(path, data){
+      return new Http.Post(path, data, true).start();
+    }
+  }
 };
