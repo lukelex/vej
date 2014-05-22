@@ -8,9 +8,9 @@ var users = vej.resource("users", vej.proxies.httpjs);
 users.all(); // GET /users
 users.create({name: "Luke Skywalker"}); // POST /users {name: "Luke Skywalker"}
 users("luke-skywalker").detail(); // GET /users/luke-skywalker
-users("luke-skywalker").update({
+users("anakin-skywalker").update({
   name: "Darth Vader"
-}); // PATCH /users/luke-skywalker {name: "Darth Vader"}
+}); // PATCH /users/anakin-skywalker {name: "Darth Vader"}
 users("luke-skywalker").delete(); // DELETE /users/luke-skywalker
 ```
 
