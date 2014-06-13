@@ -18,6 +18,11 @@ var fileStack = [
   "src/proxies.js"
 ];
 
+var testFiles = [
+  "specs/resources_spec.js",
+  "specs/proxies_spec.js"
+];
+
 var banner = [
   "<%= pkg.banner.divider %>",
   "<%= pkg.banner.project %>",
@@ -29,8 +34,8 @@ var banner = [
   ""].join("\n");
 
 gulp.task("test", function(){
-    gulp.src("specs/*_spec.js")
-        .pipe(jasmine());
+  gulp.src(testFiles)
+      .pipe(jasmine());
 });
 
 gulp.task("pack", function(){

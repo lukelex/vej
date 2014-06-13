@@ -1,4 +1,4 @@
-GLOBAL.window = {};
+GLOBAL.window = GLOBAL.window || {};
 
 require("../src/setup");
 require("../src/resource");
