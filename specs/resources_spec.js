@@ -1,3 +1,15 @@
+GLOBAL.window = {};
+
+require("../src/setup");
+require("../src/resource");
+require("../src/collection");
+require("../src/member");
+require("../src/route");
+require("../src/request");
+require("../src/proxies");
+
+var vej = GLOBAL.window.vej;
+
 describe("resource", function(){
   it("list route", function(){
     var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
@@ -25,7 +37,7 @@ describe("resource", function(){
 
     var params = {hypermedia: true};
 
-    jedis('anakin-skywalker').detail(params);
+    jedis("anakin-skywalker").detail(params);
     expect(httpMock.get).toHaveBeenCalledWith("/jedis/anakin-skywalker", {data: params});
   });
 
@@ -67,7 +79,7 @@ describe("resource", function(){
       rsc.post("follow");
     });
 
-    var params = {jedis: ['anakyn', 'obi-wan']};
+    var params = {jedis: ["anakyn", "obi-wan"]};
 
     jedis.follow(params);
     expect(httpMock.post).toHaveBeenCalledWith("/jedis/follow", {data: params});

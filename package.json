@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/lukelex/vej.js",
   "devDependencies": {
-    "jsdom": "~0.10.6",
     "gulp": "~3.8.0",
     "gulp-jasmine": "0.2.0",
     "gulp-concat": "2.2.0",
