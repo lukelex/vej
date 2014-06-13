@@ -2,17 +2,27 @@
 
 Vej.js enables you to create a declarative layer on top of your http library of choice.
 
+##Usage
 ```javascript
-var users = vej.resource("users", vej.proxies.httpjs);
+var jedis = vej.resource("jedis", vej.proxies.majaX);
 
-users.all(); // GET /users
-users.create({name: "Luke Skywalker"}); // POST /users {name: "Luke Skywalker"}
-users("luke-skywalker").detail(); // GET /users/luke-skywalker
-users("anakin-skywalker").update({
+jedis.all(); // GET /jedis
+jedis.create({name: "Luke Skywalker"}); // POST /jedis {name: "Luke Skywalker"}
+jedis("luke-skywalker").detail(); // GET /jedis/luke-skywalker
+jedis("anakin-skywalker").update({
   name: "Darth Vader"
-}); // PATCH /users/anakin-skywalker {name: "Darth Vader"}
-users("luke-skywalker").delete(); // DELETE /users/luke-skywalker
+}); // PATCH /jedis/anakin-skywalker {name: "Darth Vader"}
+jedis("luke-skywalker").delete(); // DELETE /jedis/luke-skywalker
 ```
 
-##Available interfaces
-* http.js - https://github.com/nauman1225/http.js
+##Promises
+Vej wraps all requests as with a promise (Promises/A+). We lean on [then/promise](https://github.com/then/promise) to provide this funcionality.
+
+```javascript
+users("luke-skywalker").then(function(data){
+  data // {name: "Luke Skywalker", age: 26, midichlorians: 3000}
+}, function(error){});
+```
+
+##Available proxies
+* majaX - https://github.com/SimonWaldherr/majaX.js

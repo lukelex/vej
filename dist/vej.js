@@ -98,25 +98,45 @@
 
 (function( vej ){
   vej.request = function request( spec, data, engine ){
-    return engine[ spec.method ]( spec.path, data );
+    return new Promise(function (resolve, reject) {
+      engine[ spec.method ]( spec.path, data, {
+        resolve: resolve, reject: reject
+      });
+    });
   };
 })( window.vej );
 
 (function( vej ){
   vej.proxies = {
-    httpjs: {
-      // https://github.com/nauman1225/http.js
-      get: function get( path, data ){
-        return new Http.Get( path, data, false );
+    majaX: {
+      // https://github.com/SimonWaldherr/majaX.js
+      get: function( path, data, p ){
+        return majaX(
+          { method: "GET", url: path, data: data },
+          function( data )      { p.resolve( data ); },
+          function( fail, ajax ){ p.reject( ajax ); }
+        );
       },
-      post: function post( path, data ){
-        return new Http.Post( path, data, false );
+      post: function( path, data, p ){
+        return majaX(
+          {method: "POST", url: path, data: data},
+          function( data )      { p.resolve( data ); },
+          function( fail, ajax ){ p.reject( ajax ); }
+        );
       },
-      delete: function deletE( path, data ){
-        return new Http.Delete( path, data, false );
+      delete: function( path, data, p ){
+        return majaX(
+          {method: "DELETE", url: path, data: data},
+          function( data )      { p.resolve( data ); },
+          function( fail, ajax ){ p.reject( ajax ); }
+        );
       },
-      patch: function patch( path, data ){
-        return new Http.Put( path, data, false );
+      patch: function( path, data, p ){
+        return majaX(
+          {method: "PATCH", url: path, data: data},
+          function( data )      { p.resolve( data ); },
+          function( fail, ajax ){ p.reject( ajax ); }
+        );
       }
     }
   };

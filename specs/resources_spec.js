@@ -7,6 +7,7 @@ require("../src/member");
 require("../src/route");
 require("../src/request");
 require("../src/proxies");
+GLOBAL.Promise = require("promise");
 
 var vej = GLOBAL.window.vej;
 
@@ -18,7 +19,9 @@ describe("resource", function(){
     var params = {page: 1, per: 10};
 
     jedis.all(params);
-    expect(httpMock.get).toHaveBeenCalledWith("/jedis", params);
+    expect(httpMock.get).toHaveBeenCalledWith(
+      "/jedis", params, jasmine.any(Object)
+    );
   });
 
   it("create route", function(){
@@ -28,7 +31,9 @@ describe("resource", function(){
     var params = {firstName: "Anakin", lastName: "Skywalker"};
 
     jedis.create(params);
-    expect(httpMock.post).toHaveBeenCalledWith("/jedis", params);
+    expect(httpMock.post).toHaveBeenCalledWith(
+      "/jedis", params, jasmine.any(Object)
+    );
   });
 
   it("detail route", function(){
@@ -38,7 +43,9 @@ describe("resource", function(){
     var params = {hypermedia: true};
 
     jedis("anakin-skywalker").detail(params);
-    expect(httpMock.get).toHaveBeenCalledWith("/jedis/anakin-skywalker", params);
+    expect(httpMock.get).toHaveBeenCalledWith(
+      "/jedis/anakin-skywalker", params, jasmine.any(Object)
+    );
   });
 
   it("update route", function(){
@@ -48,7 +55,9 @@ describe("resource", function(){
     var params = {firstName: "Darth", lastName: "Vader"}
 
     jedis("anakin-skywalker").update(params);
-    expect(httpMock.patch).toHaveBeenCalledWith("/jedis/anakin-skywalker", params);
+    expect(httpMock.patch).toHaveBeenCalledWith(
+      "/jedis/anakin-skywalker", params, jasmine.any(Object)
+    );
   });
 
   it("delete route", function(){
@@ -58,7 +67,9 @@ describe("resource", function(){
     var params = {hard: true};
 
     jedis("darth-vader").delete(params);
-    expect(httpMock.delete).toHaveBeenCalledWith("/jedis/darth-vader", params);
+    expect(httpMock.delete).toHaveBeenCalledWith(
+      "/jedis/darth-vader", params, jasmine.any(Object)
+    );
   });
 
   it("custom collection get route", function(){
@@ -70,7 +81,9 @@ describe("resource", function(){
     var params = {side: "dark"};
 
     jedis.search(params);
-    expect(httpMock.get).toHaveBeenCalledWith("/jedis/search", params);
+    expect(httpMock.get).toHaveBeenCalledWith(
+      "/jedis/search", params, jasmine.any(Object)
+    );
   });
 
   it("custom collection post route", function(){
@@ -82,7 +95,9 @@ describe("resource", function(){
     var params = {jedis: ["anakyn", "obi-wan"]};
 
     jedis.follow(params);
-    expect(httpMock.post).toHaveBeenCalledWith("/jedis/follow", params);
+    expect(httpMock.post).toHaveBeenCalledWith(
+      "/jedis/follow", params, jasmine.any(Object)
+    );
   });
 
   it("a request without params", function(){
@@ -91,6 +106,8 @@ describe("resource", function(){
 
     jedis.all();
 
-    expect(httpMock.get).toHaveBeenCalledWith("/jedis", {});
+    expect(httpMock.get).toHaveBeenCalledWith(
+      "/jedis", {}, jasmine.any(Object)
+    );
   });
 });

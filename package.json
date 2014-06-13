@@ -20,6 +20,9 @@
     "url": "https://github.com/lukelex/vej.js/issues"
   },
   "homepage": "https://github.com/lukelex/vej.js",
+  "dependencies": {
+    "promise": "5.0.0"
+  },
   "devDependencies": {
     "gulp": "~3.8.0",
     "gulp-jasmine": "0.2.0",

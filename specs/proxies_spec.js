@@ -14,39 +14,45 @@ describe("proxies", function(){
   var url = "/jedis";
   var params = {lightsabers: "green"};
 
-  describe("httpjs", function(){
+  describe("majaX", function(){
     beforeEach(function(){
-      var starter = {start: function(){}};
-      GLOBAL.Http = {
-        Get: function(){ return starter; },
-        Post: function(){ return starter; },
-        Delete: function(){ return starter; },
-        Put: function(){ return starter; },
-      };
-      spyOn(GLOBAL.Http, "Get").andCallThrough();
-      spyOn(GLOBAL.Http, "Post").andCallThrough();
-      spyOn(GLOBAL.Http, "Delete").andCallThrough();
-      spyOn(GLOBAL.Http, "Put").andCallThrough();
+      GLOBAL.majaX = jasmine.createSpy("majaX");
     });
 
     it("should delegate the GET correctly", function(){
-      get(vej.proxies.httpjs, params);
-      expect(GLOBAL.Http.Get).toHaveBeenCalledWith(url, params, false);
+      get(vej.proxies.majaX, params);
+      expect(GLOBAL.majaX).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        method: "GET"
+      }, jasmine.any(Function), jasmine.any(Function));
     });
 
     it("should delegate the POST correctly", function(){
-      post(vej.proxies.httpjs, params);
-      expect(GLOBAL.Http.Post).toHaveBeenCalledWith(url, params, false);
+      post(vej.proxies.majaX, params);
+      expect(GLOBAL.majaX).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        method: "POST"
+      }, jasmine.any(Function), jasmine.any(Function));
     });
 
     it("should delegate the DELETE correctly", function(){
-      del(vej.proxies.httpjs, params);
-      expect(GLOBAL.Http.Delete).toHaveBeenCalledWith(url, params, false);
+      del(vej.proxies.majaX, params);
+      expect(GLOBAL.majaX).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        method: "DELETE"
+      }, jasmine.any(Function), jasmine.any(Function));
     });
 
     it("should delegate the PATCH correctly", function(){
-      patch(vej.proxies.httpjs, params);
-      expect(GLOBAL.Http.Put).toHaveBeenCalledWith(url, params, false);
+      patch(vej.proxies.majaX, params);
+      expect(GLOBAL.majaX).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        method: "PATCH"
+      }, jasmine.any(Function), jasmine.any(Function));
     });
   });
 });
