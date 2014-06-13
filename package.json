@@ -21,17 +21,18 @@
   },
   "homepage": "https://github.com/lukelex/vej.js",
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-cli": "~0.1.11",
-    "grunt-contrib-uglify": "~0.2.7",
-    "grunt-contrib-jasmine": "~0.5.2",
-    "grunt-contrib-concat": "~0.3.0"
+    "jsdom": "~0.10.6",
+    "gulp": "~3.8.0",
+    "gulp-jasmine": "0.2.0",
+    "gulp-concat": "2.2.0",
+    "gulp-uglify": "0.3.0",
+    "gulp-header": "1.0.2"
   },
   "banner": {
-    "divider": "// ==========================================================================\n",
-    "project": "// Project:   Vej.js - Declarative http requests\n",
-    "copyright": "// Copyright: Copyright 2014 Lukas Alexandre\n",
-    "license": "// License:   Licensed under MIT license\n",
-    "licenseLink": "//            See https://github.com/lukelex/vej/blob/master/LICENSE\n"
+    "divider": "// ==========================================================================",
+    "project": "// Project:   Vej.js - Declarative http requests",
+    "copyright": "// Copyright: Copyright 2014 Lukas Alexandre",
+    "license": "// License:   Licensed under MIT license",
+    "licenseLink": "//            See https://github.com/lukelex/vej/blob/master/LICENSE"
   }
 }
