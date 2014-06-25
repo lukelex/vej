@@ -1,10 +1,10 @@
 {
-  "name": "vej.js",
+  "name": "vej",
   "version": "0.1.0",
   "description": "Clean declarative remote resource manipulation for your client javascript",
-  "main": "vej.js",
+  "main": "dist/vej.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
