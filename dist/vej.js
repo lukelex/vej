@@ -5,7 +5,7 @@
 //            See https://github.com/lukelex/vej/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 0.1.0 | From: 13-6-2014
+// Version: 0.1.1 | From: 25-6-2014
 
 (function( window ){
   window.vej = {};
