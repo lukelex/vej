@@ -1,15 +1,4 @@
-GLOBAL.window = GLOBAL.window || {};
-
-require("../src/setup");
-require("../src/resource");
-require("../src/collection");
-require("../src/member");
-require("../src/route");
-require("../src/request");
-require("../src/proxies");
-GLOBAL.Promise = require("promise");
-
-var vej = GLOBAL.window.vej;
+require("./spec_helper")
 
 describe("resource", function(){
   it("list route", function(){

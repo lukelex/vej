@@ -7,9 +7,7 @@
 
 // Version: 0.1.1 | From: 25-6-2014
 
-(function( window ){
-  window.vej = {};
-})( window );
+(function( window ){ window.vej = {}; })( window );
 
 (function( vej ){
   vej.resource = function resource( name, engine, context ){
@@ -96,7 +94,7 @@
   };
 })( window.vej );
 
-(function( vej ){
+(function( vej, Promise ){
   vej.request = function request( spec, data, engine ){
     return new Promise(function (resolve, reject) {
       engine[ spec.method ]( spec.path, data, {
@@ -104,9 +102,9 @@
       });
     });
   };
-})( window.vej );
+})( window.vej, window.Promise );
 
-(function( vej ){
+(function( vej, majaX ){
   vej.proxies = {
     majaX: {
       // https://github.com/SimonWaldherr/majaX.js
@@ -140,4 +138,4 @@
       }
     }
   };
-})( window.vej );
+})( window.vej, window.majaX );

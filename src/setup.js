@@ -1,3 +1,1 @@
-(function( window ){
-  window.vej = {};
-})( window );
+(function( window ){ window.vej = {}; })( window );

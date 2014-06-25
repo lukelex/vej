@@ -1,4 +1,4 @@
-(function( vej ){
+(function( vej, Promise ){
   vej.request = function request( spec, data, engine ){
     return new Promise(function (resolve, reject) {
       engine[ spec.method ]( spec.path, data, {
@@ -6,4 +6,4 @@
       });
     });
   };
-})( window.vej );
+})( window.vej, window.Promise );

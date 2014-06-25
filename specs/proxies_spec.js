@@ -1,9 +1,4 @@
-GLOBAL.window = GLOBAL.window || {};
-
-require("../src/setup");
-require("../src/proxies");
-
-var vej = GLOBAL.window.vej;
+require("./spec_helper");
 
 describe("proxies", function(){
   function get(proxy, data){ proxy.get(url, data); }
@@ -16,12 +11,12 @@ describe("proxies", function(){
 
   describe("majaX", function(){
     beforeEach(function(){
-      GLOBAL.majaX = jasmine.createSpy("majaX");
+      window.majaX.reset();
     });
 
     it("should delegate the GET correctly", function(){
       get(vej.proxies.majaX, params);
-      expect(GLOBAL.majaX).toHaveBeenCalledWith({
+      expect(window.majaX).toHaveBeenCalledWith({
         url: url,
         data: params,
         method: "GET"
@@ -30,7 +25,7 @@ describe("proxies", function(){
 
     it("should delegate the POST correctly", function(){
       post(vej.proxies.majaX, params);
-      expect(GLOBAL.majaX).toHaveBeenCalledWith({
+      expect(window.majaX).toHaveBeenCalledWith({
         url: url,
         data: params,
         method: "POST"
@@ -39,7 +34,7 @@ describe("proxies", function(){
 
     it("should delegate the DELETE correctly", function(){
       del(vej.proxies.majaX, params);
-      expect(GLOBAL.majaX).toHaveBeenCalledWith({
+      expect(window.majaX).toHaveBeenCalledWith({
         url: url,
         data: params,
         method: "DELETE"
@@ -48,7 +43,7 @@ describe("proxies", function(){
 
     it("should delegate the PATCH correctly", function(){
       patch(vej.proxies.majaX, params);
-      expect(GLOBAL.majaX).toHaveBeenCalledWith({
+      expect(window.majaX).toHaveBeenCalledWith({
         url: url,
         data: params,
         method: "PATCH"

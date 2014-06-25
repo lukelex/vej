@@ -1,4 +1,4 @@
-(function( vej ){
+(function( vej, majaX ){
   vej.proxies = {
     majaX: {
       // https://github.com/SimonWaldherr/majaX.js
@@ -32,4 +32,4 @@
       }
     }
   };
-})( window.vej );
+})( window.vej, window.majaX );
