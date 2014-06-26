@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:lukelex/vej.js.git"
+    "url": "git@github.com:lukelex/vej.git"
   },
   "keywords": [
     "http",
@@ -17,9 +17,9 @@
   "author": "Lukas Alexandre",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lukelex/vej.js/issues"
+    "url": "https://github.com/lukelex/vej/issues"
   },
-  "homepage": "https://github.com/lukelex/vej.js",
+  "homepage": "https://github.com/lukelex/vej",
   "dependencies": {
     "promise": "5.0.0"
   },
