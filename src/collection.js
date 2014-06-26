@@ -1,6 +1,6 @@
 (function( vej ){
   vej.collection = function collection( name, engine ){
-    var rsc = function( id ){
+    var rsc = function rsc( id ){
       rsc.member = vej.member( id, rsc.$basePath, engine );
       return rsc.member;
     };

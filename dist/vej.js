@@ -5,7 +5,7 @@
 //            See https://github.com/lukelex/vej/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 0.1.1 | From: 25-6-2014
+// Version: 0.1.2 | From: 26-6-2014
 
 (function( window ){ window.vej = {}; })( window );
 
@@ -38,7 +38,7 @@
 
 (function( vej ){
   vej.collection = function collection( name, engine ){
-    var rsc = function( id ){
+    var rsc = function rsc( id ){
       rsc.member = vej.member( id, rsc.$basePath, engine );
       return rsc.member;
     };
@@ -87,7 +87,7 @@
     };
 
     return {
-      act: function( method, data ){
+      act: function act( method, data ){
         return run( { method: method }, data || {} );
       }
     };
@@ -96,7 +96,7 @@
 
 (function( vej, Promise ){
   vej.request = function request( spec, data, engine ){
-    return new Promise(function (resolve, reject) {
+    return new Promise(function( resolve, reject ) {
       engine[ spec.method ]( spec.path, data, {
         resolve: resolve, reject: reject
       });

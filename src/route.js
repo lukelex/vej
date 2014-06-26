@@ -6,7 +6,7 @@
     };
 
     return {
-      act: function( method, data ){
+      act: function act( method, data ){
         return run( { method: method }, data || {} );
       }
     };

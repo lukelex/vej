@@ -1,6 +1,6 @@
 {
   "name": "vej",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Clean declarative remote resource manipulation for your client javascript",
   "main": "dist/vej.js",
   "scripts": {
@@ -28,8 +28,7 @@
     "gulp-jasmine": "0.2.0",
     "gulp-concat": "2.2.0",
     "gulp-uglify": "0.3.0",
-    "gulp-header": "1.0.2",
-    "asap": "^1.0.0"
+    "gulp-header": "1.0.2"
   },
   "banner": {
     "divider": "// ==========================================================================",
