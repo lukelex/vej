@@ -1,32 +1,33 @@
-(function( vej ){
-  vej.resource = function resource( name, engine, context ){
-    var rsc = vej.collection( name, engine );
+var collection = require("collection"),
+    route = require("route");
 
-    if ( !!context ){
-      function collectionAction( method, name ){
-        var newPath = rsc.$basePath + "/" + name;
-        var route = vej.route( newPath, engine );
-        rsc[ name ] = function( data ){
-          return route.act( method, data );
-        };
-      }
+modules.exports = function resource( name, engine, context ){
+  var rsc = collection( name, engine );
 
-      context.call({}, {
-        get: function get( name ){
-          collectionAction( "get", name );
-        },
-        post: function post( name ){
-          collectionAction( "post", name );
-        },
-        remove: function remove( name ){
-          collectionAction( "delete", name );
-        },
-        patch: function patch( name ){
-          collectionAction( "patch", name );
-        }
-      });
+  if ( !!context ){
+    function collectionAction( method, name ){
+      var newPath = rsc.$basePath + "/" + name;
+      var collectionRoute = route( newPath, engine );
+      rsc[ name ] = function( data ){
+        return collectionRoute.act( method, data );
+      };
     }
 
-    return rsc;
-  };
-})( window.vej );
+    context.call({}, {
+      get: function get( name ){
+        collectionAction( "get", name );
+      },
+      post: function post( name ){
+        collectionAction( "post", name );
+      },
+      remove: function remove( name ){
+        collectionAction( "delete", name );
+      },
+      patch: function patch( name ){
+        collectionAction( "patch", name );
+      }
+    });
+  }
+
+  return rsc;
+};

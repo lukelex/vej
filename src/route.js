@@ -1,14 +1,14 @@
-(function( vej ){
-  vej.route = function route( path, engine ){
-    function run( spec, data ){
-      spec.path = path;
-      return vej.request( spec, data, engine );
-    };
+var request = require("./request");
 
-    return {
-      act: function act( method, data ){
-        return run( { method: method }, data || {} );
-      }
-    };
+module.exports = function route( path, engine ){
+  function run( spec, data ){
+    spec.path = path;
+    return request( spec, data, engine );
   };
-})( window.vej );
+
+  return {
+    act: function act( method, data ){
+      return run( { method: method }, data || {} );
+    }
+  };
+};

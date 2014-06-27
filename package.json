@@ -28,7 +28,8 @@
     "gulp-jasmine": "0.2.0",
     "gulp-concat": "2.2.0",
     "gulp-uglify": "0.3.0",
-    "gulp-header": "1.0.2"
+    "gulp-header": "1.0.2",
+    "browserify": "latest"
   },
   "banner": {
     "divider": "// ==========================================================================",
