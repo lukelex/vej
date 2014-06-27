@@ -1,6 +1,6 @@
 {
   "name": "vej",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Clean declarative remote resource manipulation for your client javascript",
   "main": "dist/vej.js",
   "scripts": {

@@ -5,7 +5,7 @@
 //            See https://github.com/lukelex/vej/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 0.1.2 | From: 26-6-2014
+// Version: 0.2.0 | From: 27-6-2014
 
 (function( window ){ window.vej = {}; })( window );
 
@@ -28,6 +28,12 @@
         },
         post: function post( name ){
           collectionAction( "post", name );
+        },
+        remove: function remove( name ){
+          collectionAction( "delete", name );
+        },
+        patch: function patch( data ){
+          collectionAction( "patch", data );
         }
       });
     }
@@ -66,13 +72,13 @@
     return {
       $basePath: basePath,
       route: vej.route( basePath, engine ),
-      detail: function( data ){
+      detail: function detail( data ){
         return this.route.act( "get", data );
       },
-      delete: function( data ){
+      remove: function remove( data ){
         return this.route.act( "delete", data );
       },
-      update: function( data ){
+      update: function update( data ){
         return this.route.act( "patch", data );
       }
     };
@@ -96,7 +102,7 @@
 
 (function( vej, Promise ){
   vej.request = function request( spec, data, engine ){
-    return new Promise(function( resolve, reject ) {
+    return new Promise(function( resolve, reject ){
       engine[ spec.method ]( spec.path, data, {
         resolve: resolve, reject: reject
       });
