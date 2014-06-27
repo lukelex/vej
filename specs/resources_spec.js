@@ -55,7 +55,7 @@ describe("resource", function(){
 
     var params = {hard: true};
 
-    jedis("darth-vader").delete(params);
+    jedis("darth-vader").remove(params);
     expect(httpMock.delete).toHaveBeenCalledWith(
       "/jedis/darth-vader", params, jasmine.any(Object)
     );
@@ -86,6 +86,20 @@ describe("resource", function(){
     jedis.follow(params);
     expect(httpMock.post).toHaveBeenCalledWith(
       "/jedis/follow", params, jasmine.any(Object)
+    );
+  });
+
+  it("custom collection delete route", function(){
+    var httpMock = jasmine.createSpyObj("HttpMock", ["delete"]);
+    var jedis = vej.resource("jedis", httpMock, function(rsc){
+      rsc.remove("with_blue_saber");
+    });
+
+    var params = {reason: "it sucks!"};
+
+    jedis.with_blue_saber(params);
+    expect(httpMock.delete).toHaveBeenCalledWith(
+      "/jedis/with_blue_saber", params, jasmine.any(Object)
     );
   });
 

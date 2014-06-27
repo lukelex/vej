@@ -5,13 +5,13 @@
     return {
       $basePath: basePath,
       route: vej.route( basePath, engine ),
-      detail: function( data ){
+      detail: function detail( data ){
         return this.route.act( "get", data );
       },
-      delete: function( data ){
+      remove: function remove( data ){
         return this.route.act( "delete", data );
       },
-      update: function( data ){
+      update: function update( data ){
         return this.route.act( "patch", data );
       }
     };

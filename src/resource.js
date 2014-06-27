@@ -17,6 +17,9 @@
         },
         post: function post( name ){
           collectionAction( "post", name );
+        },
+        remove: function remove( name ){
+          collectionAction( "delete", name );
         }
       });
     }
