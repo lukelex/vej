@@ -39,7 +39,7 @@ jedis.fallback({with: "tail between your legs"}); // DELETE /jedis/fallback {wit
 ```
 
 ##Promises
-Vej wraps all requests as with a promise (Promises/A+). We lean on [then/promise](https://github.com/then/promise) to provide this funcionality.
+Vej wraps every request with a promise (Promises/A+). We rely on [then/promise](https://github.com/then/promise) to provide this funcionality.
 
 ```javascript
 users("luke-skywalker").detail().then(function(data){
