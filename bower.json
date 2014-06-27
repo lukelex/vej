@@ -1,0 +1,21 @@
+{
+  "name": "vej",
+  "version": "0.2.0",
+  "homepage": "https://github.com/lukelex/vej",
+  "authors": [
+    "Lukas Alexandre <lukas@codelogic.me>"
+  ],
+  "description": "Clean declarative remote resource manipulation",
+  "main": "dist/vej.js",
+  "keywords": [
+    "http",
+    "declarative"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "specs"
+  ]
+}

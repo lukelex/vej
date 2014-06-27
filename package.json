@@ -1,7 +1,7 @@
 {
   "name": "vej",
   "version": "0.2.0",
-  "description": "Clean declarative remote resource manipulation for your client javascript",
+  "description": "Clean declarative remote resource manipulation",
   "main": "dist/vej.js",
   "scripts": {
     "test": "gulp test"
