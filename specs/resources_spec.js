@@ -103,6 +103,20 @@ describe("resource", function(){
     );
   });
 
+  it("custom collection patch route", function(){
+    var httpMock = jasmine.createSpyObj("HttpMock", ["patch"]);
+    var jedis = vej.resource("jedis", httpMock, function(rsc){
+      rsc.patch("influence");
+    });
+
+    var params = {side: "darkside"};
+
+    jedis.influence(params);
+    expect(httpMock.patch).toHaveBeenCalledWith(
+      "/jedis/influence", params, jasmine.any(Object)
+    );
+  });
+
   it("a request without params", function(){
     var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
     var jedis = vej.resource("jedis", httpMock);

@@ -20,6 +20,9 @@
         },
         remove: function remove( name ){
           collectionAction( "delete", name );
+        },
+        patch: function patch( data ){
+          collectionAction( "patch", data );
         }
       });
     }
