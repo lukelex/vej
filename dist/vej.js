@@ -5,15 +5,24 @@
 //            See https://github.com/lukelex/vej/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 0.2.0 | From: 27-6-2014
+// Version: 0.3.0 | From: 3-7-2014
 
 (function( window ){ window.vej = {}; })( window );
 
 (function( vej ){
-  vej.resource = function resource( name, engine, context ){
-    var rsc = vej.collection( name, engine );
+  vej.resource = function resource( name, engine, config, context ){
+    context = is("Function", config) ? config : context;
+    config = is("Object", config) ? config : {};
 
-    if ( !!context ){
+    config.allow = function allow( action, config ){
+      if ( !this.only ) { return true };
+
+      return ( this.only && this.only.indexOf( action ) !== -1 );
+    };
+
+    var rsc = vej.collection( name, engine, config );
+
+    if ( is("Function", context) ){
       function collectionAction( method, name ){
         var newPath = rsc.$basePath + "/" + name;
         var route = vej.route( newPath, engine );
@@ -40,12 +49,16 @@
 
     return rsc;
   };
+
+  function is(type, obj){
+    return obj && {}.toString.call(obj) === "[object " + type + "]";
+  }
 })( window.vej );
 
 (function( vej ){
-  vej.collection = function collection( name, engine ){
+  vej.collection = function collection( name, engine, config ){
     var rsc = function rsc( id ){
-      rsc.member = vej.member( id, rsc.$basePath, engine );
+      rsc.member = vej.member( id, rsc.$basePath, engine, config );
       return rsc.member;
     };
 
@@ -53,35 +66,50 @@
 
     var route = vej.route( rsc.$basePath, engine );
 
-    rsc.all = function all( data ){
-      return route.act( "get", data );
-    };
+    if ( config.allow( "all" ) ) {
+      rsc.all = function all( data ){
+        return route.act( "get", data );
+      };
+    }
 
-    rsc.create = function create( data ){
-      return route.act( "post", data );
-    };
+    if ( config.allow( "create" ) ) {
+      rsc.create = function create( data ){
+        return route.act( "post", data );
+      };
+    }
 
     return rsc;
   };
 })( window.vej );
 
 (function( vej ){
-  vej.member = function member( id, path, engine ){
+  vej.member = function member( id, path, engine, config ){
     var basePath = path + "/" + id;
 
-    return {
+    var member = {
       $basePath: basePath,
       route: vej.route( basePath, engine ),
-      detail: function detail( data ){
-        return this.route.act( "get", data );
-      },
-      remove: function remove( data ){
-        return this.route.act( "delete", data );
-      },
-      update: function update( data ){
-        return this.route.act( "patch", data );
-      }
     };
+
+    if ( config.allow( "detail" ) ) {
+      member.detail = function detail( data ){
+        return this.route.act( "get", data );
+      };
+    }
+
+    if ( config.allow( "remove" ) ) {
+      member.remove = function remove( data ){
+        return this.route.act( "delete", data );
+      };
+    }
+
+    if ( config.allow( "update" ) ) {
+      member.update = function update( data ){
+        return this.route.act( "patch", data );
+      };
+    }
+
+    return member;
   };
 })( window.vej );
 

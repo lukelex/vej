@@ -38,6 +38,19 @@ jedis.stand_your_ground({formation: "cocoon"}); // PATCH /jedis/stang_your_groun
 jedis.fallback({with: "tail between your legs"}); // DELETE /jedis/fallback {with: "tail between your legs"}
 ```
 
+###Limiting resource creation
+
+Vej allows you to limit the amount of action created for a given action.
+
+```javascript
+var jedis = vej.resource("jedis", vej.proxies.majaX, {only: ["all", "remove"]});
+
+jedis.all() // GET /jedis
+jedis.create // undefined
+jedis("anakin").update // undefined
+jedis("anakin").remove() // DELETE /jedis/luke-skywalker
+```
+
 ##Promises
 Vej wraps every request with a promise (Promises/A+). We rely on [then/promise](https://github.com/then/promise) to provide this funcionality.
 

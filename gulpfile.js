@@ -18,12 +18,6 @@ var fileStack = [
   "src/proxies.js"
 ];
 
-// var fullStack = [
-//   "node_modules/asap/asap.js",
-//   "node_modules/promise/core.js",
-//   "node_modules/promise/index.js",
-// ].concat(fileStack);
-
 var testFiles = [
   "specs/resources_spec.js",
   "specs/proxies_spec.js"
@@ -52,8 +46,4 @@ gulp.task("pack", function(){
       .pipe(concat("vej.min.js"))
       .pipe(uglify())
       .pipe(gulp.dest("dist"));
-
-  // gulp.src(fullStack)
-  //     .pipe(concat("vej-full.js"))
-  //     .pipe(gulp.dest("dist"))
 });
