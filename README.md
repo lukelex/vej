@@ -40,7 +40,7 @@ jedis.fallback({with: "tail between your legs"}); // DELETE /jedis/fallback {wit
 
 ###Limiting resource creation
 
-Vej allows you to limit the amount of action created for a given action.
+Vej allows you to limit the amount of actions created for a given resource.
 
 ```javascript
 var jedis = vej.resource("jedis", vej.proxies.majaX, {only: ["all", "remove"]});
