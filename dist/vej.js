@@ -5,7 +5,7 @@
 //            See https://github.com/lukelex/vej/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 0.3.0 | From: 3-7-2014
+// Version: 0.3.0 | From: 5-7-2014
 
 (function( window ){ window.vej = {}; })( window );
 
@@ -14,10 +14,13 @@
     context = is("Function", config) ? config : context;
     config = is("Object", config) ? config : {};
 
-    config.allow = function allow( action, config ){
-      if ( !this.only ) { return true };
+    config.allow = function allow( action ){
+      if ( !this.only && !this.except ) { return true };
 
-      return ( this.only && this.only.indexOf( action ) !== -1 );
+      return (
+        ( this.only && this.only.indexOf( action ) !== -1 ) ||
+        ( this.except && this.except.indexOf( action ) < 0 )
+      );
     };
 
     var rsc = vej.collection( name, engine, config );

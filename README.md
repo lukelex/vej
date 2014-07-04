@@ -42,11 +42,24 @@ jedis.fallback({with: "tail between your legs"}); // DELETE /jedis/fallback {wit
 
 Vej allows you to limit the amount of actions created for a given resource.
 
+####Only
 ```javascript
 var jedis = vej.resource("jedis", vej.proxies.majaX, {only: ["all", "remove"]});
 
 jedis.all() // GET /jedis
 jedis.create // undefined
+jedis("anakin").detail // undefined
+jedis("anakin").update // undefined
+jedis("anakin").remove() // DELETE /jedis/luke-skywalker
+```
+
+####Except
+```javascript
+var jedis = vej.resource("jedis", vej.proxies.majaX, {except: ["all", "remove"]});
+
+jedis.all() // GET /jedis
+jedis.create // undefined
+jedis("anakin").detail() // GET /jedis/anakin-skywalker
 jedis("anakin").update // undefined
 jedis("anakin").remove() // DELETE /jedis/luke-skywalker
 ```

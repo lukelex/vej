@@ -128,78 +128,123 @@ describe("resource", function(){
     );
   });
 
-  describe("restricting to", function(){
+  describe("restricting with inclusion", function(){
     it("#all", function(){
-      var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
-      var jedis = vej.resource("jedis", httpMock, {only: ["all"]});
+      var jedis = vej.resource("jedis", {}, {only: ["all"]});
 
-      jedis.all();
-
-      expect(httpMock.get).toHaveBeenCalledWith(
-        "/jedis", {}, jasmine.any(Object)
-      );
+      expect(jedis.all).toBeDefined();
       expect(jedis.create).toBeUndefined();
-      expect(jedis.update).toBeUndefined();
-      expect(jedis.remove).toBeUndefined();
+      expect(jedis().update).toBeUndefined();
+      expect(jedis().remove).toBeUndefined();
     });
 
     it("#create", function(){
-      var httpMock = jasmine.createSpyObj("HttpMock", ["post"]);
-      var jedis = vej.resource("jedis", httpMock, {only: ["create"]});
+      var jedis = vej.resource("jedis", {}, {only: ["create"]});
 
-      jedis.create({name: "Luke"});
-
-      expect(httpMock.post).toHaveBeenCalledWith(
-        "/jedis", {name: "Luke"}, jasmine.any(Object)
-      );
+      expect(jedis.create).toBeDefined();
       expect(jedis.all).toBeUndefined();
-      expect(jedis.update).toBeUndefined();
-      expect(jedis.remove).toBeUndefined();
+      expect(jedis().update).toBeUndefined();
+      expect(jedis().remove).toBeUndefined();
+    });
+
+    it("#detail", function(){
+      var jedis = vej.resource("jedis", {}, {only: ["detail"]});
+
+      expect(jedis().detail).toBeDefined();
+      expect(jedis.create).toBeUndefined();
+      expect(jedis.all).toBeUndefined();
+      expect(jedis().update).toBeUndefined();
+      expect(jedis().remove).toBeUndefined();
     });
 
     it("#update", function(){
-      var httpMock = jasmine.createSpyObj("HttpMock", ["patch"]);
-      var jedis = vej.resource("jedis", httpMock, {only: ["update"]});
+      var jedis = vej.resource("jedis", {}, {only: ["update"]});
 
-      jedis("luke").update({name: "Luke Skywalker"});
-
-      expect(httpMock.patch).toHaveBeenCalledWith(
-        "/jedis/luke", {name: "Luke Skywalker"}, jasmine.any(Object)
-      );
+      expect(jedis().update).toBeDefined();
       expect(jedis.all).toBeUndefined();
       expect(jedis.create).toBeUndefined();
-      expect(jedis.remove).toBeUndefined();
+      expect(jedis().remove).toBeUndefined();
     });
 
     it("#remove", function(){
-      var httpMock = jasmine.createSpyObj("HttpMock", ["delete"]);
-      var jedis = vej.resource("jedis", httpMock, {only: ["remove"]});
+      var jedis = vej.resource("jedis", {}, {only: ["remove"]});
 
-      jedis("luke").remove();
-
-      expect(httpMock.delete).toHaveBeenCalledWith(
-        "/jedis/luke", {}, jasmine.any(Object)
-      );
+      expect(jedis().remove).toBeDefined();
       expect(jedis.all).toBeUndefined();
       expect(jedis.create).toBeUndefined();
-      expect(jedis.update).toBeUndefined();
+      expect(jedis().update).toBeUndefined();
     });
 
     it("multiple actions", function(){
-      var httpMock = jasmine.createSpyObj("HttpMock", ["get", "patch"]);
-      var jedis = vej.resource("jedis", httpMock, {only: ["all", "update"]});
+      var jedis = vej.resource("jedis", {}, {only: ["all", "update"]});
 
-      jedis.all();
-      jedis("luke").update({name: "Luke Skywalker"});
-
-      expect(httpMock.get).toHaveBeenCalledWith(
-        "/jedis", {}, jasmine.any(Object)
-      );
-      expect(httpMock.patch).toHaveBeenCalledWith(
-        "/jedis/luke", {name: "Luke Skywalker"}, jasmine.any(Object)
-      );
+      expect(jedis.all).toBeDefined();
+      expect(jedis().update).toBeDefined();
+      expect(jedis().detail).toBeUndefined();
       expect(jedis.create).toBeUndefined();
-      expect(jedis.remove).toBeUndefined();
+      expect(jedis().remove).toBeUndefined();
+    });
+  });
+
+  describe("restricting with exclusion", function(){
+    it("#all", function(){
+      var jedis = vej.resource("jedis", {}, {except: ["all"]});
+
+      expect(jedis.all).toBeUndefined()
+      expect(jedis.create).toBeDefined();
+      expect(jedis().detail).toBeDefined();
+      expect(jedis().update).toBeDefined();
+      expect(jedis().remove).toBeDefined();
+    });
+
+    it("#create", function(){
+      var jedis = vej.resource("jedis", {}, {except: ["create"]});
+
+      expect(jedis.create).toBeUndefined();
+      expect(jedis.all).toBeDefined()
+      expect(jedis().detail).toBeDefined();
+      expect(jedis().update).toBeDefined();
+      expect(jedis().remove).toBeDefined();
+    });
+
+    it("#detail", function(){
+      var jedis = vej.resource("jedis", {}, {except: ["detail"]});
+
+      expect(jedis().detail).toBeUndefined();
+      expect(jedis.create).toBeDefined();
+      expect(jedis.all).toBeDefined()
+      expect(jedis().update).toBeDefined();
+      expect(jedis().remove).toBeDefined();
+    });
+
+    it("#update", function(){
+      var jedis = vej.resource("jedis", {}, {except: ["update"]});
+
+      expect(jedis().update).toBeUndefined();
+      expect(jedis.all).toBeDefined()
+      expect(jedis().detail).toBeDefined();
+      expect(jedis.create).toBeDefined();
+      expect(jedis().remove).toBeDefined();
+    });
+
+    it("#remove", function(){
+      var jedis = vej.resource("jedis", {}, {except: ["remove"]});
+
+      expect(jedis().remove).toBeUndefined();
+      expect(jedis.all).toBeDefined()
+      expect(jedis().detail).toBeDefined();
+      expect(jedis.create).toBeDefined();
+      expect(jedis().update).toBeDefined();
+    });
+
+    it("multiple actions", function(){
+      var jedis = vej.resource("jedis", {}, {except: ["create", "remove"]});
+
+      expect(jedis.create).toBeUndefined();
+      expect(jedis().remove).toBeUndefined();
+      expect(jedis().detail).toBeDefined();
+      expect(jedis.all).toBeDefined();
+      expect(jedis().update).toBeDefined();
     });
   });
 });

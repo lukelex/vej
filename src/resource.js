@@ -3,10 +3,13 @@
     context = is("Function", config) ? config : context;
     config = is("Object", config) ? config : {};
 
-    config.allow = function allow( action, config ){
-      if ( !this.only ) { return true };
+    config.allow = function allow( action ){
+      if ( !this.only && !this.except ) { return true };
 
-      return ( this.only && this.only.indexOf( action ) !== -1 );
+      return (
+        ( this.only && this.only.indexOf( action ) !== -1 ) ||
+        ( this.except && this.except.indexOf( action ) < 0 )
+      );
     };
 
     var rsc = vej.collection( name, engine, config );
