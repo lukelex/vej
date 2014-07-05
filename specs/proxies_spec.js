@@ -1,4 +1,5 @@
-require("./spec_helper");
+GLOBAL.majaX = jasmine.createSpy("majaX");
+var vej = require("../src/entrypoint");
 
 describe("proxies", function(){
   function get(proxy, data){ proxy.get(url, data); }
@@ -11,12 +12,12 @@ describe("proxies", function(){
 
   describe("majaX", function(){
     beforeEach(function(){
-      window.majaX.reset();
+      majaX.reset();
     });
 
     it("should delegate the GET correctly", function(){
       get(vej.proxies.majaX, params);
-      expect(window.majaX).toHaveBeenCalledWith({
+      expect(majaX).toHaveBeenCalledWith({
         url: url,
         data: params,
         method: "GET"
@@ -25,7 +26,7 @@ describe("proxies", function(){
 
     it("should delegate the POST correctly", function(){
       post(vej.proxies.majaX, params);
-      expect(window.majaX).toHaveBeenCalledWith({
+      expect(majaX).toHaveBeenCalledWith({
         url: url,
         data: params,
         method: "POST"
@@ -34,7 +35,7 @@ describe("proxies", function(){
 
     it("should delegate the DELETE correctly", function(){
       del(vej.proxies.majaX, params);
-      expect(window.majaX).toHaveBeenCalledWith({
+      expect(majaX).toHaveBeenCalledWith({
         url: url,
         data: params,
         method: "DELETE"
@@ -43,7 +44,7 @@ describe("proxies", function(){
 
     it("should delegate the PATCH correctly", function(){
       patch(vej.proxies.majaX, params);
-      expect(window.majaX).toHaveBeenCalledWith({
+      expect(majaX).toHaveBeenCalledWith({
         url: url,
         data: params,
         method: "PATCH"

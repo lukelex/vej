@@ -1,5 +1,3 @@
-var majaX = require("majax");
-
 module.exports = {
   majaX: {
     // https://github.com/SimonWaldherr/majaX.js

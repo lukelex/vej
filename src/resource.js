@@ -1,7 +1,7 @@
-var collection = require("collection"),
-    route = require("route");
+var collection = require("./collection"),
+    route = require("./route");
 
-modules.exports = function resource( name, engine, context ){
+module.exports = function resource( name, engine, context ){
   var rsc = collection( name, engine );
 
   if ( !!context ){

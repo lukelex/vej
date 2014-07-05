@@ -1,4 +1,4 @@
-require("./spec_helper")
+var vej = require("../src/entrypoint");
 
 describe("resource", function(){
   it("list route", function(){

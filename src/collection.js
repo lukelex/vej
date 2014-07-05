@@ -1,6 +1,5 @@
 var member = require("./member"),
-    route = require("./route"),
-    proxies = require("./proxies");
+    route = require("./route");
 
 module.exports = function collection( name, engine ){
   var rsc = function rsc( id ){
