@@ -57,11 +57,11 @@ jedis("anakin").remove() // DELETE /jedis/luke-skywalker
 ```javascript
 var jedis = vej.resource("jedis", vej.proxies.majaX, {except: ["all", "remove"]});
 
-jedis.all() // GET /jedis
-jedis.create // undefined
-jedis("anakin").detail() // GET /jedis/anakin-skywalker
-jedis("anakin").update // undefined
-jedis("anakin").remove() // DELETE /jedis/luke-skywalker
+jedis.all // undefined
+jedis.create({name: "Anakin"}) // POST /jedis {name: "Anakin"}
+jedis("anakin").detail() // GET /jedis/anakin
+jedis("anakin").update({name: "Vader"}) // PATCH /jedis/anakin {name: "Vader"}
+jedis("anakin").remove // undefined
 ```
 
 ##Promises
