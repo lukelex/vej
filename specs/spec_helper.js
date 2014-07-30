@@ -3,6 +3,7 @@ GLOBAL.window = {};
 window.Promise = require("promise");
 
 require("../src/setup");
+require("../src/action_builder");
 require("../src/resource");
 require("../src/collection");
 require("../src/member");

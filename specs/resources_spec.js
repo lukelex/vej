@@ -61,60 +61,62 @@ describe("resource", function(){
     );
   });
 
-  it("custom collection get route", function(){
-    var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
-    var jedis = vej.resource("jedis", httpMock, function(rsc){
-      rsc.get("search");
+  describe("custom collection routes", function(){
+    it("#get", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
+      var jedis = vej.resource("jedis", httpMock, function(rsc){
+        rsc.collection.get("search");
+      });
+
+      var params = {side: "dark"};
+
+      jedis.search(params);
+      expect(httpMock.get).toHaveBeenCalledWith(
+        "/jedis/search", params, jasmine.any(Object)
+      );
     });
 
-    var params = {side: "dark"};
+    it("#post", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["post"]);
+      var jedis = vej.resource("jedis", httpMock, function(rsc){
+        rsc.collection.post("follow");
+      });
 
-    jedis.search(params);
-    expect(httpMock.get).toHaveBeenCalledWith(
-      "/jedis/search", params, jasmine.any(Object)
-    );
-  });
+      var params = {jedis: ["anakyn", "obi-wan"]};
 
-  it("custom collection post route", function(){
-    var httpMock = jasmine.createSpyObj("HttpMock", ["post"]);
-    var jedis = vej.resource("jedis", httpMock, function(rsc){
-      rsc.post("follow");
+      jedis.follow(params);
+      expect(httpMock.post).toHaveBeenCalledWith(
+        "/jedis/follow", params, jasmine.any(Object)
+      );
     });
 
-    var params = {jedis: ["anakyn", "obi-wan"]};
+    it("#delete", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["delete"]);
+      var jedis = vej.resource("jedis", httpMock, function(rsc){
+        rsc.collection.remove("with_blue_saber");
+      });
 
-    jedis.follow(params);
-    expect(httpMock.post).toHaveBeenCalledWith(
-      "/jedis/follow", params, jasmine.any(Object)
-    );
-  });
+      var params = {reason: "it sucks!"};
 
-  it("custom collection delete route", function(){
-    var httpMock = jasmine.createSpyObj("HttpMock", ["delete"]);
-    var jedis = vej.resource("jedis", httpMock, function(rsc){
-      rsc.remove("with_blue_saber");
+      jedis.with_blue_saber(params);
+      expect(httpMock.delete).toHaveBeenCalledWith(
+        "/jedis/with_blue_saber", params, jasmine.any(Object)
+      );
     });
 
-    var params = {reason: "it sucks!"};
+    it("#patch", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["patch"]);
+      var jedis = vej.resource("jedis", httpMock, function(rsc){
+        rsc.collection.patch("influence");
+      });
 
-    jedis.with_blue_saber(params);
-    expect(httpMock.delete).toHaveBeenCalledWith(
-      "/jedis/with_blue_saber", params, jasmine.any(Object)
-    );
-  });
+      var params = {side: "darkside"};
 
-  it("custom collection patch route", function(){
-    var httpMock = jasmine.createSpyObj("HttpMock", ["patch"]);
-    var jedis = vej.resource("jedis", httpMock, function(rsc){
-      rsc.patch("influence");
+      jedis.influence(params);
+      expect(httpMock.patch).toHaveBeenCalledWith(
+        "/jedis/influence", params, jasmine.any(Object)
+      );
     });
-
-    var params = {side: "darkside"};
-
-    jedis.influence(params);
-    expect(httpMock.patch).toHaveBeenCalledWith(
-      "/jedis/influence", params, jasmine.any(Object)
-    );
   });
 
   it("a request without params", function(){
