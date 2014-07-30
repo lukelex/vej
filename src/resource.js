@@ -1,7 +1,7 @@
 (function( vej ){
   vej.resource = function resource( name, engine, config, context ){
-    context = is("Function", config) ? config : context;
-    config = is("Object", config) ? config : {};
+    context = is( config, "Function" ) ? config : context;
+    config = is( config, "Object" ) ? config : {};
 
     config.allow = function allow( action ){
       if ( !this.only && !this.except ) { return true };
@@ -14,7 +14,7 @@
 
     var rsc = vej.collection( name, engine, config );
 
-    if ( is("Function", context) ){
+    if ( is( context, "Function" ) ){
       function collectionAction( method, name ){
         var newPath = rsc.$basePath + "/" + name;
         var route = vej.route( newPath, engine );
@@ -42,7 +42,7 @@
     return rsc;
   };
 
-  function is(type, obj){
+  function is( obj, type ){
     return obj && {}.toString.call(obj) === "[object " + type + "]";
   }
 })( window.vej );
