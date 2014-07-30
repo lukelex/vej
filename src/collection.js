@@ -1,7 +1,7 @@
 (function( vej ){
   vej.collection = function collection( name, engine, config ){
     var rsc = function rsc( id ){
-      rsc.member = vej.member( id, rsc.$basePath, engine, config );
+      rsc.member.$id = id;
       return rsc.member;
     };
 
@@ -11,15 +11,17 @@
 
     if ( config.allow( "all" ) ) {
       rsc.all = function all( data ){
-        return route.act( "get", data );
+        return route.act( null, "get", data );
       };
     }
 
     if ( config.allow( "create" ) ) {
       rsc.create = function create( data ){
-        return route.act( "post", data );
+        return route.act( null, "post", data );
       };
     }
+
+    rsc.member = vej.member( rsc.$basePath + "/:id", engine, config );
 
     return rsc;
   };

@@ -119,6 +119,64 @@ describe("resource", function(){
     });
   });
 
+  describe("custom member routes", function(){
+    it("#get", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
+      var jedis = vej.resource("jedis", httpMock, function(rsc){
+        rsc.member.get("jedis_killed");
+      });
+
+      var params = {level: "younglings"};
+
+      jedis("anakin").jedis_killed(params);
+      expect(httpMock.get).toHaveBeenCalledWith(
+        "/jedis/anakin/jedis_killed", params, jasmine.any(Object)
+      );
+    });
+
+    it("#post", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["post"]);
+      var jedis = vej.resource("jedis", httpMock, function(rsc){
+        rsc.member.post("add_disciple");
+      });
+
+      var params = {name: "luke"};
+
+      jedis("anakin").add_disciple(params);
+      expect(httpMock.post).toHaveBeenCalledWith(
+        "/jedis/anakin/add_disciple", params, jasmine.any(Object)
+      );
+    });
+
+    it("#delete", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["delete"]);
+      var jedis = vej.resource("jedis", httpMock, function(rsc){
+        rsc.member.remove("remove_rank");
+      });
+
+      var params = {which: "jedi"};
+
+      jedis("anakin").remove_rank(params);
+      expect(httpMock.delete).toHaveBeenCalledWith(
+        "/jedis/anakin/remove_rank", params, jasmine.any(Object)
+      );
+    });
+
+    it("#patch", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["patch"]);
+      var jedis = vej.resource("jedis", httpMock, function(rsc){
+        rsc.member.patch("change_lightsaber");
+      });
+
+      var params = {color: "red"};
+
+      jedis("anakin").change_lightsaber(params);
+      expect(httpMock.patch).toHaveBeenCalledWith(
+        "/jedis/anakin/change_lightsaber", params, jasmine.any(Object)
+      );
+    });
+  });
+
   it("a request without params", function(){
     var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
     var jedis = vej.resource("jedis", httpMock);

@@ -16,7 +16,8 @@
 
     if ( is( context, "Function" ) ){
       context.call({}, {
-        collection: vej.actionBuilder( rsc, engine )
+        collection: vej.actionBuilder( rsc, engine ),
+        member: vej.actionBuilder( rsc(":id"), engine )
       });
     }
 

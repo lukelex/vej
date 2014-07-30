@@ -1,13 +1,13 @@
 (function( vej ){
   vej.route = function route( path, engine ){
-    function run( spec, data ){
-      spec.path = path;
+    function run( id, spec, data ){
+      spec.path = path.replace( ":id", id );
       return vej.request( spec, data, engine );
     };
 
     return {
-      act: function act( method, data ){
-        return run( { method: method }, data || {} );
+      act: function act( id, method, data ){
+        return run( id, { method: method }, data || {} );
       }
     };
   };

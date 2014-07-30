@@ -20,7 +20,7 @@
     var newPath = rsc.$basePath + "/" + name;
     var route = vej.route( newPath, engine );
     rsc[ name ] = function( data ){
-      return route.act( method, data );
+      return route.act( rsc.$id, method, data );
     };
   }
 
