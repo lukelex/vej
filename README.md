@@ -25,17 +25,27 @@ jedis("anakin-skywalker").remove(); // DELETE /jedis/luke-skywalker
 Vej lets your extend a resource with extra actions:
 
 ```javascript
-var jedis = vej.resource("jedis", vej.proxies.majaX, function(rsc){
-  rsc.get("with_experience");
-  rsc.post("send_to_battle");
-  rsc.patch("stand_your_ground");
-  rsc.delete("fallback");
+var jedis = vej.resource("jedis", vej.proxies.majaX, function(){
+  this.collection.get("with_experience"); // GET /jedis/with_experience
+  this.collection.post("send_to_battle"); // POST /jedis/send_to_battle
+  this.collection.patch("stand_your_ground"); // PATCH /jedis/stand_your_ground
+  this.collection.remove("fallback"); // DELETE /jedis/fallback
+
+  this.member.get("jedis_killed"); // GET /jedis/:id/jedis_killed
+  this.member.post("add_disciple"); // POST /jedis/:id/add_disciple
+  this.member.patch("change_lightsaber"); // PATCH /jedis/:id/change_lightsaber
+  this.member.remove("remove_rank"); // DELETE /jedis/:id/remove_rank
 });
 
 jedis.with_experience({lightsaber: "double"}); // GET /jedis/with_experience {lightsaber: "double"}
 jedis.send_to_battle({strategy: "peace & love"}); // POST /jedis/send_to_battle {strategy: "peace & love"}
 jedis.stand_your_ground({formation: "cocoon"}); // PATCH /jedis/stang_your_ground {formation: "cocoon"}
 jedis.fallback({with: "tail between your legs"}); // DELETE /jedis/fallback {with: "tail between your legs"}
+
+jedis("anakin").jedis_killed({which: "jedi"}); // GET /jedis/anakin/jedis_killed {which: "jedi"}
+jedis("anakin").add_disciple({name: "star killer"}); // POST /jedis/anakin/add_disciple {name: "star killer"}
+jedis("anakin").change_lightsaber({color: "red"}); // PATCH /jedis/anakin/change_lightsaber {color: "red"}
+jedis("anakin").remove_rank({which: "jedi"}); // DELETE /jedis/anakin/remove_rank {which: "jedi"}
 ```
 
 ###Limiting resource creation

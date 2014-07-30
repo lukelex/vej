@@ -64,8 +64,8 @@ describe("resource", function(){
   describe("custom collection routes", function(){
     it("#get", function(){
       var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
-      var jedis = vej.resource("jedis", httpMock, function(rsc){
-        rsc.collection.get("search");
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.collection.get("search");
       });
 
       var params = {side: "dark"};
@@ -78,8 +78,8 @@ describe("resource", function(){
 
     it("#post", function(){
       var httpMock = jasmine.createSpyObj("HttpMock", ["post"]);
-      var jedis = vej.resource("jedis", httpMock, function(rsc){
-        rsc.collection.post("follow");
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.collection.post("follow");
       });
 
       var params = {jedis: ["anakyn", "obi-wan"]};
@@ -92,8 +92,8 @@ describe("resource", function(){
 
     it("#delete", function(){
       var httpMock = jasmine.createSpyObj("HttpMock", ["delete"]);
-      var jedis = vej.resource("jedis", httpMock, function(rsc){
-        rsc.collection.remove("with_blue_saber");
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.collection.remove("with_blue_saber");
       });
 
       var params = {reason: "it sucks!"};
@@ -106,8 +106,8 @@ describe("resource", function(){
 
     it("#patch", function(){
       var httpMock = jasmine.createSpyObj("HttpMock", ["patch"]);
-      var jedis = vej.resource("jedis", httpMock, function(rsc){
-        rsc.collection.patch("influence");
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.collection.patch("influence");
       });
 
       var params = {side: "darkside"};
@@ -122,8 +122,8 @@ describe("resource", function(){
   describe("custom member routes", function(){
     it("#get", function(){
       var httpMock = jasmine.createSpyObj("HttpMock", ["get"]);
-      var jedis = vej.resource("jedis", httpMock, function(rsc){
-        rsc.member.get("jedis_killed");
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.member.get("jedis_killed");
       });
 
       var params = {level: "younglings"};
@@ -136,11 +136,11 @@ describe("resource", function(){
 
     it("#post", function(){
       var httpMock = jasmine.createSpyObj("HttpMock", ["post"]);
-      var jedis = vej.resource("jedis", httpMock, function(rsc){
-        rsc.member.post("add_disciple");
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.member.post("add_disciple");
       });
 
-      var params = {name: "luke"};
+      var params = {name: "star killer"};
 
       jedis("anakin").add_disciple(params);
       expect(httpMock.post).toHaveBeenCalledWith(
@@ -150,8 +150,8 @@ describe("resource", function(){
 
     it("#delete", function(){
       var httpMock = jasmine.createSpyObj("HttpMock", ["delete"]);
-      var jedis = vej.resource("jedis", httpMock, function(rsc){
-        rsc.member.remove("remove_rank");
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.member.remove("remove_rank");
       });
 
       var params = {which: "jedi"};
@@ -164,8 +164,8 @@ describe("resource", function(){
 
     it("#patch", function(){
       var httpMock = jasmine.createSpyObj("HttpMock", ["patch"]);
-      var jedis = vej.resource("jedis", httpMock, function(rsc){
-        rsc.member.patch("change_lightsaber");
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.member.patch("change_lightsaber");
       });
 
       var params = {color: "red"};

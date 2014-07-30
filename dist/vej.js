@@ -26,7 +26,7 @@
     var rsc = vej.collection( name, engine, config );
 
     if ( is( context, "Function" ) ){
-      context.call({}, {
+      context.call({
         collection: vej.actionBuilder( rsc, engine ),
         member: vej.actionBuilder( rsc(":id"), engine )
       });
