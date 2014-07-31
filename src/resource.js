@@ -1,5 +1,7 @@
 (function( vej ){
-  vej.resource = function resource( name, engine, config, context ){
+  "use strict";
+
+  function resource( name, engine, config, context ){
     context = is( config, "Function" ) ? config : context;
     config = is( config, "Object" ) ? config : {};
 
@@ -27,4 +29,6 @@
   function is( obj, type ){
     return obj && {}.toString.call(obj) === "[object " + type + "]";
   }
+
+  vej.resource = resource;
 })( window.vej );

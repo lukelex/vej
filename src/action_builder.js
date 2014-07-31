@@ -1,4 +1,6 @@
 (function( vej ){
+  "use strict";
+
   function actionBuilder( rsc, engine ){
     return {
       get: function get( name ){

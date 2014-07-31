@@ -1,1 +1,5 @@
-(function( window ){ window.vej = {}; })( window );
+(function( window ){
+  "use strict";
+
+  window.vej = {};
+})( window );

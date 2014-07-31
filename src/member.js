@@ -1,5 +1,7 @@
 (function( vej ){
-  vej.member = function member( basePath, engine, config ){
+  "use strict";
+
+  function member( basePath, engine, config ){
     var member = {
       $id: null,
       $basePath: basePath,
@@ -26,4 +28,6 @@
 
     return member;
   };
+
+  vej.member = member;
 })( window.vej );

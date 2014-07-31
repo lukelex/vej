@@ -5,12 +5,18 @@
 //            See https://github.com/lukelex/vej/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 0.4.0 | From: 30-7-2014
+// Version: 0.4.0 | From: 31-7-2014
 
-(function( window ){ window.vej = {}; })( window );
+(function( window ){
+  "use strict";
+
+  window.vej = {};
+})( window );
 
 (function( vej ){
-  vej.resource = function resource( name, engine, config, context ){
+  "use strict";
+
+  function resource( name, engine, config, context ){
     context = is( config, "Function" ) ? config : context;
     config = is( config, "Object" ) ? config : {};
 
@@ -38,10 +44,14 @@
   function is( obj, type ){
     return obj && {}.toString.call(obj) === "[object " + type + "]";
   }
+
+  vej.resource = resource;
 })( window.vej );
 
 (function( vej ){
-  vej.collection = function collection( name, engine, config ){
+  "use strict";
+
+  function collection( name, engine, config ){
     var rsc = function rsc( id ){
       rsc.member.$id = id;
       return rsc.member;
@@ -67,10 +77,14 @@
 
     return rsc;
   };
+
+  vej.collection = collection;
 })( window.vej );
 
 (function( vej ){
-  vej.member = function member( basePath, engine, config ){
+  "use strict";
+
+  function member( basePath, engine, config ){
     var member = {
       $id: null,
       $basePath: basePath,
@@ -97,10 +111,14 @@
 
     return member;
   };
+
+  vej.member = member;
 })( window.vej );
 
 (function( vej ){
-  vej.route = function route( path, engine ){
+  "use strict";
+
+  function route( path, engine ){
     function run( id, spec, data ){
       spec.path = path.replace( ":id", id );
       return vej.request( spec, data, engine );
@@ -112,19 +130,27 @@
       }
     };
   };
+
+  vej.route = route;
 })( window.vej );
 
 (function( vej, Promise ){
-  vej.request = function request( spec, data, engine ){
+  "use strict";
+
+  function request( spec, data, engine ){
     return new Promise(function( resolve, reject ){
       engine[ spec.method ]( spec.path, data, {
         resolve: resolve, reject: reject
       });
     });
   };
+
+  vej.request = request;
 })( window.vej, window.Promise );
 
 (function( vej, majaX ){
+  "use strict";
+
   vej.proxies = {
     majaX: {
       // https://github.com/SimonWaldherr/majaX.js

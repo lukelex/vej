@@ -1,4 +1,6 @@
 (function( vej, majaX ){
+  "use strict";
+
   vej.proxies = {
     majaX: {
       // https://github.com/SimonWaldherr/majaX.js

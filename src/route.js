@@ -1,5 +1,7 @@
 (function( vej ){
-  vej.route = function route( path, engine ){
+  "use strict";
+
+  function route( path, engine ){
     function run( id, spec, data ){
       spec.path = path.replace( ":id", id );
       return vej.request( spec, data, engine );
@@ -11,4 +13,6 @@
       }
     };
   };
+
+  vej.route = route;
 })( window.vej );

@@ -1,5 +1,7 @@
 (function( vej ){
-  vej.collection = function collection( name, engine, config ){
+  "use strict";
+
+  function collection( name, engine, config ){
     var rsc = function rsc( id ){
       rsc.member.$id = id;
       return rsc.member;
@@ -25,4 +27,6 @@
 
     return rsc;
   };
+
+  vej.collection = collection;
 })( window.vej );
