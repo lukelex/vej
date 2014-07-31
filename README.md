@@ -75,7 +75,7 @@ jedis("anakin").remove // undefined
 ```
 
 ##Promises
-Vej wraps every request with a promise (Promises/A+). We rely on [then/promise](https://github.com/then/promise) to provide this funcionality.
+Vej wraps every request with a promise (Promises/A+). We rely on [then/promise](https://github.com/then/promise) to provide this functionality.
 
 ```javascript
 users("luke-skywalker").detail().then(function(data){
