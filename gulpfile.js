@@ -10,6 +10,7 @@ var releaseDate = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear()
 
 var fileStack = [
   "src/setup.js",
+  "src/action_builder.js",
   "src/resource.js",
   "src/collection.js",
   "src/member.js",

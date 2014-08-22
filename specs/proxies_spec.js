@@ -50,4 +50,54 @@ describe("proxies", function(){
       }, jasmine.any(Function), jasmine.any(Function));
     });
   });
+
+  describe("jquery", function(){
+    beforeEach(function(){
+      window.jQuery.ajax.reset();
+    });
+
+    it("should delegate the GET correctly", function(){
+      get(vej.proxies.jQuery, params);
+      expect(window.jQuery.ajax).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        type: "GET",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the POST correctly", function(){
+      post(vej.proxies.jQuery, params);
+      expect(window.jQuery.ajax).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        type: "POST",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the DELETE correctly", function(){
+      del(vej.proxies.jQuery, params);
+      expect(window.jQuery.ajax).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        type: "DELETE",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the PATCH correctly", function(){
+      patch(vej.proxies.jQuery, params);
+      expect(window.jQuery.ajax).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        type: "PATCH",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
+    });
+  });
 });

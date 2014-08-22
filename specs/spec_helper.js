@@ -11,6 +11,7 @@ require("../src/route");
 require("../src/request");
 
 window.majaX = jasmine.createSpy("majaX");
+window.jQuery = {ajax: jasmine.createSpy("jQuery")};
 require("../src/proxies");
 
 GLOBAL.vej = window.vej;
