@@ -2,44 +2,44 @@
   "use strict";
 
   vej.proxies = {
-    jQuery: {
-      get: function( path, data, p ){
-        return jQuery.ajax({
-          type: "GET",
+    jQuery: (function(){
+      function requestConfigFor( type, path, data, promise ){
+        return {
+          type: type,
           url: path,
           data: data,
-          success: function(){ p.resolve.apply( {}, arguments ); },
-          error:   function(){ p.reject.apply( {}, arguments ); }
-        });
-      },
-      post: function( path, data, p ){
-        return jQuery.ajax({
-          type: "POST",
-          url: path,
-          data: data ,
-          success: function(){ p.resolve.apply( {}, arguments ); },
-          error:   function(){ p.reject.apply( {}, arguments ); }
-        });
-      },
-      delete: function( path, data, p ){
-        return jQuery.ajax({
-          type: "DELETE",
-          url: path,
-          data: data,
-          success: function(){ p.resolve.apply( {}, arguments ); },
-          error:   function(){ p.reject.apply( {}, arguments ); }
-        });
-      },
-      patch: function( path, data, p ){
-        return jQuery.ajax({
-          type: "PATCH",
-          url: path,
-          data: data,
-          success: function(){ p.resolve.apply( {}, arguments ); },
-          error:   function(){ p.reject.apply( {}, arguments ); }
-        });
+          success: function(){
+            promise.resolve.apply( {}, arguments );
+          },
+          error: function(){
+            promise.reject.apply( {}, arguments );
+          }
+        }
       }
-    },
+
+      return {
+        get: function( path, data, promise ){
+          return jQuery.ajax(
+            requestConfigFor( "GET", path, data, promise )
+          );
+        },
+        post: function( path, data, promise ){
+          return jQuery.ajax(
+            requestConfigFor( "POST", path, data, promise )
+          );
+        },
+        delete: function( path, data, promise ){
+          return jQuery.ajax(
+            requestConfigFor( "DELETE", path, data, promise )
+          );
+        },
+        patch: function( path, data, promise ){
+          return jQuery.ajax(
+            requestConfigFor( "PATCH", path, data, promise )
+          );
+        }
+      }
+    })(),
     majaX: {
       // https://github.com/SimonWaldherr/majaX.js
       get: function( path, data, p ){
