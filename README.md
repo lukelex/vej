@@ -84,4 +84,4 @@ users("luke-skywalker").detail().then(function(data){
 ```
 
 ##Available proxies
-* majaX - https://github.com/SimonWaldherr/majaX.js
+* Zepto - http://zeptojs.com/#ajax

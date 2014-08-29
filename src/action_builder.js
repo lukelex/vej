@@ -12,6 +12,9 @@
       remove: function remove( name ){
         buildAction( "delete", name, rsc, engine );
       },
+      put: function put( name ){
+        buildAction( "put", name, rsc, engine );
+      },
       patch: function patch( name ){
         buildAction( "patch", name, rsc, engine );
       }

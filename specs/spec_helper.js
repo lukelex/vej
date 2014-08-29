@@ -10,7 +10,7 @@ require("../src/member");
 require("../src/route");
 require("../src/request");
 
-window.majaX = jasmine.createSpy("majaX");
+window.Zepto = {ajax: jasmine.createSpy("Zepto")};
 window.jQuery = {ajax: jasmine.createSpy("jQuery")};
 require("../src/proxies");
 

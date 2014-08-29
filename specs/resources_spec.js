@@ -117,6 +117,20 @@ describe("resource", function(){
         "/jedis/influence", params, jasmine.any(Object)
       );
     });
+
+    it("#put", function(){
+      var httpMock = jasmine.createSpyObj("HttpMock", ["put"]);
+      var jedis = vej.resource("jedis", httpMock, function(){
+        this.collection.put("influence");
+      });
+
+      var params = {side: "darkside"};
+
+      jedis.influence(params);
+      expect(httpMock.put).toHaveBeenCalledWith(
+        "/jedis/influence", params, jasmine.any(Object)
+      );
+    });
   });
 
   describe("custom member routes", function(){

@@ -4,50 +4,70 @@ describe("proxies", function(){
   function get(proxy, data){ proxy.get(url, data); }
   function post(proxy, data){ proxy.post(url, data); }
   function del(proxy, data){ proxy.delete(url, data); }
+  function put(proxy, data){ proxy.put(url, data); }
   function patch(proxy, data){ proxy.patch(url, data); }
 
   var url = "/jedis";
   var params = {lightsabers: "green"};
 
-  describe("majaX", function(){
+  describe("Zepto", function(){
     beforeEach(function(){
-      window.majaX.reset();
+      window.Zepto.ajax.reset();
     });
 
     it("should delegate the GET correctly", function(){
-      get(vej.proxies.majaX, params);
-      expect(window.majaX).toHaveBeenCalledWith({
+      get(vej.proxies.Zepto, params);
+      expect(window.Zepto.ajax).toHaveBeenCalledWith({
         url: url,
         data: params,
-        method: "GET"
-      }, jasmine.any(Function), jasmine.any(Function));
+        type: "GET",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
     });
 
     it("should delegate the POST correctly", function(){
-      post(vej.proxies.majaX, params);
-      expect(window.majaX).toHaveBeenCalledWith({
+      post(vej.proxies.Zepto, params);
+      expect(window.Zepto.ajax).toHaveBeenCalledWith({
         url: url,
         data: params,
-        method: "POST"
-      }, jasmine.any(Function), jasmine.any(Function));
+        type: "POST",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
     });
 
     it("should delegate the DELETE correctly", function(){
-      del(vej.proxies.majaX, params);
-      expect(window.majaX).toHaveBeenCalledWith({
+      del(vej.proxies.Zepto, params);
+      expect(window.Zepto.ajax).toHaveBeenCalledWith({
         url: url,
         data: params,
-        method: "DELETE"
-      }, jasmine.any(Function), jasmine.any(Function));
+        type: "DELETE",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the PUT correctly", function(){
+      put(vej.proxies.Zepto, params);
+      expect(window.Zepto.ajax).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        type: "PUT",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
     });
 
     it("should delegate the PATCH correctly", function(){
-      patch(vej.proxies.majaX, params);
-      expect(window.majaX).toHaveBeenCalledWith({
+      patch(vej.proxies.Zepto, params);
+      expect(window.Zepto.ajax).toHaveBeenCalledWith({
         url: url,
         data: params,
-        method: "PATCH"
-      }, jasmine.any(Function), jasmine.any(Function));
+        type: "PATCH",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
     });
   });
 
@@ -84,6 +104,17 @@ describe("proxies", function(){
         url: url,
         data: params,
         type: "DELETE",
+        success: jasmine.any(Function),
+        error: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the PUT correctly", function(){
+      put(vej.proxies.jQuery, params);
+      expect(window.jQuery.ajax).toHaveBeenCalledWith({
+        url: url,
+        data: params,
+        type: "PUT",
         success: jasmine.any(Function),
         error: jasmine.any(Function)
       });
