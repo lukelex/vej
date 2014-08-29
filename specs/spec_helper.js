@@ -12,6 +12,7 @@ require("../src/request");
 
 window.Zepto = {ajax: jasmine.createSpy("Zepto")};
 window.jQuery = {ajax: jasmine.createSpy("jQuery")};
+window.Ajax = {Request: jasmine.createSpy("Prototype")};
 require("../src/proxies");
 
 GLOBAL.vej = window.vej;

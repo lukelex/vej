@@ -1,4 +1,4 @@
-(function( vej,jQuery, Zepto ){
+(function( vej,jQuery, Zepto, Ajax ){
   "use strict";
 
   vej.proxies = {
@@ -57,7 +57,40 @@
           jQueryshConfigFor( "PATCH", path, data, promise )
         );
       }
-    }
+    },
+    Prototype: (function(){
+      // http://prototypejs.org/learn/introduction-to-ajax
+      function requestFor( method, data, promise ){
+        return {
+          method: method,
+          parameters: data,
+          onSuccess: function onSuccess(){
+            promise.resolve.apply( {}, arguments )
+          },
+          onFailure: function onSuccess(){
+            promise.resolve.apply( {}, arguments )
+          }
+        }
+      }
+
+      return {
+        get: function( path, data, promise ){
+          return new Ajax.Request( path, requestFor( "GET", data, promise ) );
+        },
+        post: function( path, data, promise ){
+          return new Ajax.Request( path, requestFor( "POST", data, promise ) );
+        },
+        delete: function( path, data, promise ){
+          return new Ajax.Request( path, requestFor( "DELETE", data, promise ) );
+        },
+        put: function( path, data, promise ){
+          return new Ajax.Request( path, requestFor( "PUT", data, promise ) );
+        },
+        patch: function( path, data, promise ){
+          return new Ajax.Request( path, requestFor( "PATCH", data, promise ) );
+        }
+      };
+    })()
   };
 
   function jQueryshConfigFor( type, path, data, promise ){
@@ -73,4 +106,4 @@
       }
     }
   }
-})( window.vej, window.jQuery, window.Zepto );
+})( window.vej, window.jQuery, window.Zepto, window.Ajax );

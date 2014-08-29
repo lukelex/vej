@@ -131,4 +131,60 @@ describe("proxies", function(){
       });
     });
   });
+
+  describe("Prototype", function(){
+    beforeEach(function(){
+      window.Ajax.Request.reset();
+    });
+
+    it("should delegate the GET correctly", function(){
+      get(vej.proxies.Prototype, params);
+      expect(window.Ajax.Request).toHaveBeenCalledWith(url, {
+        parameters: params,
+        method: "GET",
+        onSuccess: jasmine.any(Function),
+        onFailure: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the POST correctly", function(){
+      post(vej.proxies.Prototype, params);
+      expect(window.Ajax.Request).toHaveBeenCalledWith(url, {
+        parameters: params,
+        method: "POST",
+        onSuccess: jasmine.any(Function),
+        onFailure: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the DELETE correctly", function(){
+      del(vej.proxies.Prototype, params);
+      expect(window.Ajax.Request).toHaveBeenCalledWith(url, {
+        parameters: params,
+        method: "DELETE",
+        onSuccess: jasmine.any(Function),
+        onFailure: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the PUT correctly", function(){
+      put(vej.proxies.Prototype, params);
+      expect(window.Ajax.Request).toHaveBeenCalledWith(url, {
+        parameters: params,
+        method: "PUT",
+        onSuccess: jasmine.any(Function),
+        onFailure: jasmine.any(Function)
+      });
+    });
+
+    it("should delegate the PATCH correctly", function(){
+      patch(vej.proxies.Prototype, params);
+      expect(window.Ajax.Request).toHaveBeenCalledWith(url, {
+        parameters: params,
+        method: "PATCH",
+        onSuccess: jasmine.any(Function),
+        onFailure: jasmine.any(Function)
+      });
+    });
+  });
 });
